@@ -3,17 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Dados;
+package UI;
 
 /**
  *
  * @author alex
  */
-public abstract class Cadastro {
-    protected int _matricula;
+public class GUI {
     
-    public int getMatricula()
-    {
-        return this._matricula;
-    }
 }
