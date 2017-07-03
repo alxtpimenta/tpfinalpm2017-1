@@ -13,21 +13,11 @@ public class Orcamento
 {
     private int _cargaHoraria;
     private int _precoPorHora;
-    private int _cpfCliente;
     private double _valorMateriais;
     private double _valorTotal;
     private String _descricaoMateriais;
     private String _solicitacao;
     private String _nomeFuncionario;
     private String _nomeCliente;
-
-    
-    // atualiza o valor total com o calculo do ISS
-    
-    public double ISS()
-    {
-    	valorTotal = 1.05 * valorTotal;
-    	return valorTotal;
-    	
-    }
+    private String _cpfCliente;
 }
