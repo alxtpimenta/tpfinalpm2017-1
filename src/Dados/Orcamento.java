@@ -20,7 +20,7 @@ public class Orcamento
  
 
     private double calculaISS(double valortotal){
-	this._valorTotal = this._valortotal + this.ISS * this._valorTotal;
+	this._valorTotal = this._valorTotal + this.ISS * this._valorTotal;
     }
 
 }

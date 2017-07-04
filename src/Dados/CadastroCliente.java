@@ -14,9 +14,10 @@ public class CadastroCliente extends Cadastro
     private final int _cpf;
 
     
-    public CadastroCliente(String nome, int cpf, String email, int telefone)
+    public CadastroCliente(int matricula, int cpf,String nome, String email, int telefone)
     {
         this._cpf = cpf;
+        this._matricula = matricula;
         this._nome = nome;
         this._telefone = telefone;
         this._email = email;

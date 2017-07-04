@@ -12,9 +12,9 @@ package Dados;
 public abstract class Cadastro {
 
     protected int _matricula;
-    private final String _nome;
-    private final String _email;
-    private final int _telefone;
+    protected String _nome;
+    protected String _email;
+    protected int _telefone;
 
     
     public int getMatricula()

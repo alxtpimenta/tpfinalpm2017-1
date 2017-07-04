@@ -11,10 +11,10 @@ package Dados;
  */
 public class CadastroFuncionario extends Cadastro 
 {
-    private final String _especialidade;
+    private String _especialidade;
 
     
-    public CadastroFuncionario(String nome, String especialidade, String email, int telefone)
+    public CadastroFuncionario(int matricula,String nome, String especialidade, String email, int telefone)
     {
         this._especialidade = especialidade;
         this._nome = nome;
@@ -22,7 +22,7 @@ public class CadastroFuncionario extends Cadastro
         this._email = email;
     }
     
-        public String getEspecialidade()
+    public String getEspecialidade()
     {
         return this._especialidade;
     }
