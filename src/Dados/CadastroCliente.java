@@ -11,10 +11,8 @@ package Dados;
  */
 public class CadastroCliente extends Cadastro 
 {
-    private final String _nome;
     private final int _cpf;
-    private final String _email;
-    private final int _telefone;
+
     
     public CadastroCliente(String nome, int cpf, String email, int telefone)
     {

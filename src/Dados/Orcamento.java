@@ -16,8 +16,11 @@ public class Orcamento
     private double _valorMateriais;
     private double _valorTotal;
     private String _descricaoMateriais;
-    private String _solicitacao;
-    private String _nomeFuncionario;
-    private String _nomeCliente;
-    private String _cpfCliente;
+    private double ISS = 0.05;	
+ 
+
+    private double calculaISS(double valortotal){
+	this._valorTotal = this._valortotal + this.ISS * this._valorTotal;
+    }
+
 }
