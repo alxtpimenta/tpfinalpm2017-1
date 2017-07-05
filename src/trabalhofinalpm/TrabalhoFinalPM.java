@@ -5,9 +5,13 @@
  */
 package trabalhofinalpm;
 
+import Dados.Arquivo;
+import Dados.CadastroCliente;
+import Dados.CadastroFuncionario;
 import UI.Login;
 import static UI.Login.cadastrarCliente;
 import java.awt.event.ActionEvent;
+import java.io.FileNotFoundException;
 
 /**
  *
@@ -22,10 +26,12 @@ public class TrabalhoFinalPM {
     private static boolean cadastroCliente = false;
     private static boolean telaCliente = false;
     private static boolean telaFuncionario = false;
+    private static int cpfClienteAtivo;
+    private static int matriculaFuncionarioAtivo;
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         // TODO code application logic here
         login = true;
         mainLoop = true;
@@ -54,11 +60,27 @@ public class TrabalhoFinalPM {
                 while(loginCliente)
                 {
                     //LOGAR CLIENTE
+                    cpfClienteAtivo = UI.Dialog.intInput("Digite o CPF:");
+                    if(Arquivo.verificarExistenciaCliente(cpfClienteAtivo))
+                    {
+                        //CLIENTE LOGADO
+                    }
+                    else
+                    {
+                        //ESTE CPF NAO ESTA REGISTRADO
+                    }
                 }
                 
                 while(cadastroCliente)
                 {
                     //CADASTRO DE CLIENTE
+                    String nome, email;
+                    int telefone,cpf;
+                    CadastroCliente cliente;
+                    nome = UI.Dialog.stringInput("Nome:");
+                    cpf = UI.Dialog.intInput("CPF:");
+                    email = UI.Dialog.stringInput("Email:");
+                    telefone = UI.Dialog.intInput("Telefone:");
                 }
                 //FIM DA TELA DE LOGIN
             }

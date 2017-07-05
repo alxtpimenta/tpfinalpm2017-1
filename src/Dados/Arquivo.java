@@ -94,6 +94,24 @@ public class Arquivo {
         return Integer.parseInt(tokens[0]);
     }
     
+    public static boolean verificarExistenciaCliente(int cpf) throws FileNotFoundException
+    {
+        String aux = null;
+        String tokens[];
+        boolean output = false;
+        
+        leitor = new Scanner(arquivo);
+        while(leitor.hasNextLine())
+        {
+            aux = leitor.next();
+            tokens = aux.split(";");
+            if(Integer.parseInt(tokens[1]) == cpf)
+                output = true;
+        }
+        leitor.close();
+        return output;
+    }
+    
     public static CadastroFuncionario recuperarCadastroFuncionario(int matricula) throws FileNotFoundException
     {
         String aux = null;
