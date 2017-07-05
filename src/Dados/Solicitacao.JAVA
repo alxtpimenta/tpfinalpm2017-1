@@ -11,10 +11,10 @@ public class Solicitacao{
 	
 	public int numeroSolicitacao;
 	public int matriculaCliente;
-	public int matriculaTecnico;
 	public int profissionalDesejado;
 	public String descricao;
 	public int status;
+	public int matriculaTecnico;
 	public Orcamento orcamento;
 
 	//metodos
@@ -40,9 +40,11 @@ public class Solicitacao{
 	}
 	
 	public int setStatus(int status){
-	// status = ;
+	// status = this.status;
 		// esse e mais complicado, pode ser invocado por diversos metodos	
 		
-	}	
-	
+	}
+	public String toString(){
+        	return this.numeroSolicitacao +" , " + this.numeroMatriculaCliente +" , " + this.profissionalDesejado +" , " + this.descricao +" , " + this.status +" , " + this.matriculaTecnico;
+	}
 }
