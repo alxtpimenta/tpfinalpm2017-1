@@ -12,6 +12,7 @@ import UI.Login;
 import static UI.Login.cadastrarCliente;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 /**
  *
@@ -31,15 +32,15 @@ public class TrabalhoFinalPM {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) throws FileNotFoundException, IOException {
         // TODO code application logic here
         login = true;
         mainLoop = true;
+        UI.Login loginWindow = UI.Login.prepararInterface();
         while(mainLoop)
         {
             while(login)
             {
-                UI.Login loginWindow = new UI.Login();
                 loginWindow.loginFuncionario.addActionListener((ActionEvent e) -> {
                     loginFuncionario = true;
                     //LOGIN DE FUNCIONARIO

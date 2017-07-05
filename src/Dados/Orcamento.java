@@ -19,7 +19,8 @@ public class Orcamento
     private double ISS = 0.05;	
  
 
-    private double calculaISS(double valortotal){
+    private double calculaISS(double valortotal)
+    {
 
 	return valortotal + (valortotal * ISS);
     }
@@ -29,5 +30,5 @@ public class Orcamento
      this._valorTotal = this._cargaHoraria * this._precoPorHora + this._valorMateriais;
      this.calculaISS(this._valorTotal);
      return this._valorTotal; 
-    )
+    }
 }
