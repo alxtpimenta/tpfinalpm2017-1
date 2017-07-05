@@ -23,11 +23,11 @@ public class Solicitacao{
 	// numeroSolicitacao = ;"consultar o nº da proxima posicao livre do array e registrar aqui"
 	}
 		
-	public void set_matriculaCliente(int matricula){
+	public void set_MatriculaCliente(int matricula){
 	//matriculaCliente = ;"resulta de um evento na GUI"
 	}
 	
-	public void set_matriculaTecnico(int matricula){
+	public void set_MatriculaTecnico(int matricula){
 	//matriculaTecnico = ;"resulta de um evento na GUI"
 	}
 	
@@ -39,13 +39,13 @@ public class Solicitacao{
 	//descricao = ;"resulta de um evento na GUI"	
 	}
 	
-	public int setStatus(int status){
+	public void setStatus(int status){
 	// status = ;
 		// esse e mais complicado, pode ser invocado por diversos metodos	
 		
 	}	
 	public String toString(){
-    	return this.numeroSolicitacao +" , " + this.numeroMatriculaCliente +" , " + this.profissionalDesejado +" , " + this.descricao +" , " + 
+    	return this.numeroSolicitacao +" , " + this.matriculaCliente +" , " + this.profissionalDesejado +" , " + this.descricao +" , " + 
 this.status +" , " + this.matriculaTecnico;
     }
 }
