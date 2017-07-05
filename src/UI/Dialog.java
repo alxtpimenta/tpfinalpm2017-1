@@ -22,4 +22,9 @@ public class Dialog {
     {
         return Integer.parseInt(JOptionPane.showInputDialog(dialog));
     }
+    
+    public static void outputDialog(String titulo, String mensagem)
+    {
+        JOptionPane.showMessageDialog(null,mensagem,titulo, JOptionPane.ERROR_MESSAGE); 
+    }
 }

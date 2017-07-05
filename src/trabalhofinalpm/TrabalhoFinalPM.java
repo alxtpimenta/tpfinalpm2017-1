@@ -27,7 +27,7 @@ public class TrabalhoFinalPM {
     private static boolean telaCliente = false;
     private static boolean telaFuncionario = false;
     private static int cpfClienteAtivo;
-    private static int matriculaFuncionarioAtivo;
+    private static int cpfFuncionarioAtivo;
     /**
      * @param args the command line arguments
      */
@@ -55,6 +55,18 @@ public class TrabalhoFinalPM {
                 while(loginFuncionario)
                 {
                     //LOGAR FUNCIONARIO
+                    cpfFuncionarioAtivo = UI.Dialog.intInput("Digite o CPF:");
+                    if(Arquivo.verificarExistenciaCliente(cpfFuncionarioAtivo))
+                    {
+                        //FUNCIONARIO LOGADO
+                    }
+                    else
+                    {
+                        //ESTE CPF NAO ESTA REGISTRADO
+                        cpfFuncionarioAtivo = 0;
+                        //exibir mensagem de erro
+                        UI.Dialog.outputDialog("Erro", "CPF nao cadastrado");
+                    }
                 }
                 
                 while(loginCliente)
@@ -68,6 +80,9 @@ public class TrabalhoFinalPM {
                     else
                     {
                         //ESTE CPF NAO ESTA REGISTRADO
+                        cpfClienteAtivo = 0;
+                        //exibir mensagem de erro
+                        UI.Dialog.outputDialog("Erro", "CPF nao cadastrado");
                     }
                 }
                 
@@ -81,6 +96,9 @@ public class TrabalhoFinalPM {
                     cpf = UI.Dialog.intInput("CPF:");
                     email = UI.Dialog.stringInput("Email:");
                     telefone = UI.Dialog.intInput("Telefone:");
+                    cliente = new CadastroCliente(0,cpf,nome,email,telefone);
+                    Arquivo.cadastrarCliente(cliente);
+                    
                 }
                 //FIM DA TELA DE LOGIN
             }

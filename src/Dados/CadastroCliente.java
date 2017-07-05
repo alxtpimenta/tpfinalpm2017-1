@@ -11,9 +11,7 @@ package Dados;
  */
 public class CadastroCliente extends Cadastro 
 {
-    private int _cpf;
 
-    
     public CadastroCliente(int matricula, int cpf,String nome, String email, int telefone)
     {
         this._cpf = cpf;
@@ -21,17 +19,6 @@ public class CadastroCliente extends Cadastro
         this._nome = nome;
         this._telefone = telefone;
         this._email = email;
-    }
-    
-    
-    public int getCPF()
-    {
-        return this._cpf;
-    }
-
-    public void setCPF(int cpf)
-    {
-      this._cpf = cpf;
     }
 
 }

@@ -15,7 +15,7 @@ public abstract class Cadastro {
     protected String _nome;
     protected String _email;
     protected int _telefone;
-
+    protected int _cpf;
     
     public int getMatricula()
     {
@@ -35,5 +35,15 @@ public abstract class Cadastro {
     public String getEmail()
     {
         return this._email;
+    }
+    
+    public int getCPF()
+    {
+        return this._cpf;
+    }
+
+    public void setCPF(int cpf)
+    {
+      this._cpf = cpf;
     }
 }
