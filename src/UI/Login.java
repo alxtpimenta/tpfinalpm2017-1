@@ -13,12 +13,13 @@ import javax.swing.*;
  */
 public class Login 
 {
-    public static JFrame mainWindow;
-    public static JButton loginFuncionario;
-    public static JButton loginCliente;
-    public static JButton cadastrarCliente;
+    public JFrame mainWindow;
+    public JButton loginFuncionario;
+    public JButton loginCliente;
+    public JButton cadastrarCliente;
+    private static Login instance;
     
-    public Login()
+    protected Login()
     {
         mainWindow = new JFrame("Login");
         mainWindow.setLocationRelativeTo(null);
@@ -38,5 +39,15 @@ public class Login
         mainWindow.add(loginCliente);
         mainWindow.add(cadastrarCliente);
         mainWindow.setVisible(true);
+    }
+    
+    public static Login prepararInterface()
+    {
+        if(instance == null)
+        {
+            instance = new Login();
+            
+        }
+        return instance;
     }
 }
