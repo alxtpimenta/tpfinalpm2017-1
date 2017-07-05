@@ -23,23 +23,15 @@ public class CadastroCliente extends Cadastro
         this._email = email;
     }
     
-    public String getNome()
-    {
-        return this._nome;
-    }
     
     public int getCPF()
     {
         return this._cpf;
     }
-    
-    public int getTelefone()
+
+    public void setCPF(int cpf)
     {
-        return this._telefone;
+      this._cpf = cpf;
     }
-    
-    public String getEmail()
-    {
-        return this._email;
-    }
+
 }

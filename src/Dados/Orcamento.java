@@ -27,6 +27,7 @@ public class Orcamento
     private double calculaTotal()
     {
      this._valorTotal = this._cargaHoraria * this.precoPorHora + this._valorMateriais;
-     this.calculaISS(this.valorTotal); 
+     this.calculaISS(this.valorTotal);
+     return this._valorTotal; 
     )
 }
