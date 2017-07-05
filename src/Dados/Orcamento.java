@@ -29,5 +29,7 @@ public class Orcamento
      this._valorTotal = this._cargaHoraria * this._precoPorHora + this._valorMateriais;
      this.calculaISS(this._valorTotal);
      return this._valorTotal; 
-    )
+    }
+
+
 }
