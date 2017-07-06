@@ -169,10 +169,22 @@ public class Arquivo {
     
     public static void cadastrarServico(CadastroServico novo) throws IOException
     {
-        String saida = Integer.toString(novo.getID()) + ";" + Integer.toString(novo.getMatriculaCliente()) + ";" + Integer.toString(novo.getMatriculaFuncionario()) + ";" +
+        String saida = Integer.toString(novo.getID()) + ";" + Integer.toString(novo.getCpfCliente()) + ";" + Integer.toString(novo.getCpfFuncionario()) + ";" +
                 novo.getDescricao() + ";" + Integer.toString(novo.getStatus());
         File servicos = new File(diretorioArquivos);
         BufferedWriter output = new BufferedWriter(new FileWriter(servicos, true));
         output.write(saida);
+    }
+    
+    public static List<CadastroServico> retornarServicosCPF(List<CadastroServico> cadastros, int cpf)
+    {
+        List<CadastroServico> saida = new ArrayList<>();
+        for(CadastroServico registro : cadastros)
+        {
+            if(registro.getCpfCliente() == cpf | registro.getCpfFuncionario() == cpf)
+                saida.add(registro);
+        }
+        
+        return saida;
     }
 }

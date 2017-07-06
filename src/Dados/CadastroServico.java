@@ -11,8 +11,8 @@ package Dados;
  */
 public class CadastroServico extends Cadastro 
 {
-    private final int _matriculaCliente;
-    private final int _matriculaFuncionario;
+    private final int _cpfCliente;
+    private final int _cpfFuncionario;
     private int _status;
     private final String _descricao;
     private final int _id;
@@ -21,15 +21,15 @@ public class CadastroServico extends Cadastro
     public CadastroServico(int id,int matriculaCliente, int matriculaFuncionario, String descricao, int status)
     {
         this._descricao = descricao;
-        this._matriculaCliente = matriculaCliente;
-        this._matriculaFuncionario = matriculaFuncionario;
+        this._cpfCliente = matriculaCliente;
+        this._cpfFuncionario = matriculaFuncionario;
         this._status = status;
         this._id = id;
     }
     
-    public int getMatriculaCliente()
+    public int getCpfCliente()
     {
-        return this._matriculaCliente;
+        return this._cpfCliente;
     }
     
     public int getID()
@@ -37,9 +37,9 @@ public class CadastroServico extends Cadastro
         return this._id;
     }
     
-    public int getMatriculaFuncionario()
+    public int getCpfFuncionario()
     {
-        return this._matriculaFuncionario;
+        return this._cpfFuncionario;
     }
     
     public int getStatus()
