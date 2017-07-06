@@ -14,12 +14,13 @@ public class CadastroFuncionario extends Cadastro
     private String _especialidade;
 
     
-    public CadastroFuncionario(int matricula,String nome, String especialidade, String email, int telefone)
+    public CadastroFuncionario(int matricula,int cpf,String nome, String especialidade, String email, int telefone)
     {
         this._especialidade = especialidade;
         this._nome = nome;
         this._telefone = telefone;
         this._email = email;
+        this._cpf = cpf;
     }
     
     public String getEspecialidade()

@@ -5,14 +5,17 @@
  */
 package Dados;
 
+import java.util.List;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -21,152 +24,155 @@ import java.util.Scanner;
  */
 public class Arquivo {
     
-    private static String diretorio;
-    private static File arquivo = new File(diretorio);
-    private static  Scanner leitor;
+    private static final String diretorioClientes = "cadastro_cliente.txt";
+    private static final String diretorioFuncionarios = "cadastro_funcionario.txt";
+    private static final String diretorioArquivos = "cadastro_servico.txt";
     
-    public static void cadastrarCliente(CadastroCliente cliente) throws FileNotFoundException, UnsupportedEncodingException, IOException
+    public static int retornarMatricula(int tipo) throws FileNotFoundException
     {
-        String aux = null;
-        String tokens[];
-        int matricula;
+        String diretorio = null;
         
-        leitor = new Scanner(arquivo);
-        while(leitor.hasNextLine())
-        {
-            aux = leitor.next();
+        switch (tipo) {
+            case 1:
+                diretorio = diretorioClientes;
+                break;
+            case 2:
+                diretorio = diretorioFuncionarios;
+                break;
+            case 3:
+                diretorio = diretorioArquivos;
+                break;
+            default:
+                break;
         }
-        leitor.close();
-        tokens = aux.split(";");
-        matricula = Integer.parseInt(tokens[0]);
         
-        Writer writer = new BufferedWriter(new OutputStreamWriter(
-              new FileOutputStream(diretorio), "utf-8"));
-        
-        String output = Integer.toString(matricula) + ';' + Integer.toString(cliente.getCPF()) +';'+ cliente.getNome() + ';' + cliente.getEmail()
-                + ';' + Integer.toString(cliente.getTelefone());
-        writer.write(output);
-        
-        
-    }
-    
-    public static void cadastrarFuncionario(CadastroFuncionario funcionario) throws FileNotFoundException, UnsupportedEncodingException, IOException
-    {
-        String aux = null;
-        String tokens[];
-        int matricula;
-        
-        leitor = new Scanner(arquivo);
-        while(leitor.hasNextLine())
-        {
-            aux = leitor.next();
-        }
-        leitor.close();
-        tokens = aux.split(";");
-        matricula = Integer.parseInt(tokens[0]);
-        
-        Writer writer = new BufferedWriter(new OutputStreamWriter(
-              new FileOutputStream(diretorio), "utf-8"));
-        
-        String output = Integer.toString(matricula) + ';'+ funcionario.getNome() + ';' + funcionario.getEmail()
-                + ';' + Integer.toString(funcionario.getTelefone()) + ';' + funcionario.getEspecialidade();
-        
-        writer.write(output);
-    }
-    
-    public static void cadastrarServico(Cadastro servico)
-    {
-        
-    }
-    
-    public static int retornarMatricula(int cpf) throws FileNotFoundException
-    {
+        File registros = new File(diretorio);
+        Scanner scan = new Scanner(registros);
         String aux = null;
         String tokens[];
         
-        leitor = new Scanner(arquivo);
-        while(leitor.hasNextLine())
+        while(scan.hasNextLine())
         {
-            aux = leitor.next();
+            aux = scan.next();
         }
-        leitor.close();
+        scan.close();
         tokens = aux.split(";");
         return Integer.parseInt(tokens[0]);
     }
     
     public static boolean verificarExistenciaCliente(int cpf) throws FileNotFoundException
     {
-        String aux = null;
+        File clientes = new File(diretorioClientes);
+        
+        Scanner scan = new Scanner(clientes);
+        
+        String aux;
         String tokens[];
         boolean output = false;
-        
-        leitor = new Scanner(arquivo);
-        while(leitor.hasNextLine())
+        while(scan.hasNextLine())
         {
-            aux = leitor.next();
+            aux = scan.next();
             tokens = aux.split(";");
             if(Integer.parseInt(tokens[1]) == cpf)
                 output = true;
         }
-        leitor.close();
+        scan.close();
         return output;
     }
     
-    public static CadastroFuncionario recuperarCadastroFuncionario(int matricula) throws FileNotFoundException
+    public static List<CadastroCliente> carregarCadastroClientes() throws FileNotFoundException
     {
-        String aux = null;
-        String tokens[];
-        boolean seek = true;
+        File clientes = new File(diretorioClientes);
         
-        leitor = new Scanner(arquivo);
-        while(seek);
+        Scanner scan = new Scanner(clientes);
+        String aux;
+        String tokens[];
+        List<CadastroCliente> saida = new ArrayList<>();
+        CadastroCliente instancia;
+        //ARQUIVO NO FORMATO
+        //int matricula; int cpf; string nome; string email; int telefone
+        while(scan.hasNextLine())
         {
-            aux = leitor.next();
+            aux = scan.nextLine();
             tokens = aux.split(";");
-            if(leitor.hasNextLine())
-                seek = true;
-            else
-                seek = false;
-            
-            if(Integer.parseInt(tokens[0]) == matricula)
-                seek = false;
+            instancia = new CadastroCliente(Integer.parseInt(tokens[0]),Integer.parseInt(tokens[1]),tokens[2],
+                    tokens[3], Integer.parseInt(tokens[4]));
+            saida.add(instancia);
         }
-        leitor.close();
-        if(Integer.parseInt(tokens[0]) == matricula)
-        {
-            CadastroFuncionario output = new CadastroFuncionario(Integer.parseInt(tokens[0]),tokens[1],tokens[4],tokens[2],Integer.parseInt(tokens[3]));
-            return output;
-        }
-        else
-            return null;
+        scan.close();
+        return saida;
     }
     
-    private static CadastroCliente recuperarCadastroCliente(int matricula) throws FileNotFoundException
+    public static void cadastrarCliente(CadastroCliente novo) throws IOException
     {
-        String aux = null;
-        String tokens[];
-        boolean seek = true;
+        String saida = Integer.toString(novo.getMatricula()) + ";" + Integer.toString(novo.getCPF()) + ";" + novo.getNome() + ";" +
+                novo.getEmail() + ";" + Integer.toString(novo.getTelefone());
+        File clientes = new File(diretorioClientes);
+        BufferedWriter output = new BufferedWriter(new FileWriter(clientes, true));
+        output.write(saida);
+    }
+    
+    public static List<CadastroFuncionario> carregarCadastroFuncionario() throws FileNotFoundException
+    {
+        File funcionarios = new File(diretorioFuncionarios);
         
-        leitor = new Scanner(arquivo);
-        while(seek);
+        Scanner scan = new Scanner(funcionarios);
+        String aux;
+        String tokens[];
+        List<CadastroFuncionario> saida = new ArrayList<>();
+        CadastroFuncionario instancia;
+        //ARQUIVO NO FORMATO
+        //int matricula; int cpf; string nome;string especialidade; string email; int telefone
+        while(scan.hasNextLine())
         {
-            aux = leitor.next();
+            aux = scan.nextLine();
             tokens = aux.split(";");
-            if(leitor.hasNextLine())
-                seek = true;
-            else
-                seek = false;
-            
-            if(Integer.parseInt(tokens[0]) == matricula)
-                seek = false;
+            instancia = new CadastroFuncionario(Integer.parseInt(tokens[0]),Integer.parseInt(tokens[1]),tokens[2],
+                    tokens[3], tokens[4], Integer.parseInt(tokens[5]));
+            saida.add(instancia);
         }
-        leitor.close();
-        if(Integer.parseInt(tokens[0]) == matricula)
+        scan.close();
+        return saida;
+    }
+    
+    public static void cadastrarFuncionario(CadastroFuncionario novo) throws IOException
+    {
+        String saida = Integer.toString(novo.getMatricula()) + ";" + Integer.toString(novo.getCPF()) + ";" + novo.getNome() + ";" +
+                novo.getEspecialidade() + ";" + novo.getEmail() + ";" + Integer.toString(novo.getTelefone());
+        File funcionarios = new File(diretorioFuncionarios);
+        BufferedWriter output = new BufferedWriter(new FileWriter(funcionarios, true));
+        output.write(saida);
+    }
+    
+    public static List<CadastroServico> carregarCadastroServicos() throws FileNotFoundException
+    {
+        File servicos = new File(diretorioArquivos);
+        
+        Scanner scan = new Scanner(servicos);
+        String aux;
+        String tokens[];
+        List<CadastroServico> saida = new ArrayList<>();
+        CadastroServico instancia;
+        //ARQUIVO NO FORMATO
+        //int id;int matriculaCliente;int matriculaFuncionario; string descricao; int status
+        while(scan.hasNextLine())
         {
-            CadastroCliente output = new CadastroCliente(Integer.parseInt(tokens[0]),Integer.parseInt(tokens[1]),tokens[2],tokens[3],Integer.parseInt(tokens[4]));
-            return output;
+            aux = scan.nextLine();
+            tokens = aux.split(";");
+            instancia = new CadastroServico(Integer.parseInt(tokens[0]),Integer.parseInt(tokens[1]),Integer.parseInt(tokens[2]),
+                    tokens[3], Integer.parseInt(tokens[4]));
+            saida.add(instancia);
         }
-        else
-            return null;
+        scan.close();
+        return saida;
+    }
+    
+    public static void cadastrarServico(CadastroServico novo) throws IOException
+    {
+        String saida = Integer.toString(novo.getID()) + ";" + Integer.toString(novo.getMatriculaCliente()) + ";" + Integer.toString(novo.getMatriculaFuncionario()) + ";" +
+                novo.getDescricao() + ";" + Integer.toString(novo.getStatus());
+        File servicos = new File(diretorioArquivos);
+        BufferedWriter output = new BufferedWriter(new FileWriter(servicos, true));
+        output.write(saida);
     }
 }

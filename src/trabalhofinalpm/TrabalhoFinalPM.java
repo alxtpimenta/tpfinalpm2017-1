@@ -5,14 +5,12 @@
  */
 package trabalhofinalpm;
 
-import Dados.Arquivo;
-import Dados.CadastroCliente;
-import Dados.CadastroFuncionario;
-import UI.Login;
-import static UI.Login.cadastrarCliente;
+import Dados.*;
+import UI.*;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.List;
 
 /**
  *
@@ -36,6 +34,9 @@ public class TrabalhoFinalPM {
         // TODO code application logic here
         login = true;
         mainLoop = true;
+        List<CadastroCliente> listaClientes;
+        List<CadastroFuncionario> listaFuncionarios;
+        List<CadastroServico> listaServicos;
         UI.Login loginWindow = UI.Login.prepararInterface();
         while(mainLoop)
         {
@@ -53,6 +54,10 @@ public class TrabalhoFinalPM {
                     cadastroCliente = true;
                     //CADASTRO DE CLIENTE
                 });
+                //Atualizar registros na memoria
+                listaClientes = Arquivo.carregarCadastroClientes();
+                listaFuncionarios = Arquivo.carregarCadastroFuncionario();
+                listaServicos = Arquivo.carregarCadastroServicos();
                 while(loginFuncionario)
                 {
                     //LOGAR FUNCIONARIO
@@ -60,6 +65,8 @@ public class TrabalhoFinalPM {
                     if(Arquivo.verificarExistenciaCliente(cpfFuncionarioAtivo))
                     {
                         //FUNCIONARIO LOGADO
+                        loginFuncionario = false;
+                        login = false;
                     }
                     else
                     {
@@ -77,6 +84,8 @@ public class TrabalhoFinalPM {
                     if(Arquivo.verificarExistenciaCliente(cpfClienteAtivo))
                     {
                         //CLIENTE LOGADO
+                        loginCliente = false;
+                        login = false;
                     }
                     else
                     {
@@ -99,6 +108,7 @@ public class TrabalhoFinalPM {
                     telefone = UI.Dialog.intInput("Telefone:");
                     cliente = new CadastroCliente(0,cpf,nome,email,telefone);
                     Arquivo.cadastrarCliente(cliente);
+                    cadastroCliente = false;
                     
                 }
                 //FIM DA TELA DE LOGIN
