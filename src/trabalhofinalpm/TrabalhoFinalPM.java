@@ -100,13 +100,14 @@ public class TrabalhoFinalPM {
                 {
                     //CADASTRO DE CLIENTE
                     String nome, email;
-                    int telefone,cpf;
+                    int matricula,telefone,cpf;
                     CadastroCliente cliente;
                     nome = UI.Dialog.stringInput("Nome:");
                     cpf = UI.Dialog.intInput("CPF:");
                     email = UI.Dialog.stringInput("Email:");
                     telefone = UI.Dialog.intInput("Telefone:");
-                    cliente = new CadastroCliente(0,cpf,nome,email,telefone);
+                    matricula = Arquivo.retornarMatricula(1);
+                    cliente = new CadastroCliente(matricula,cpf,nome,email,telefone);
                     Arquivo.cadastrarCliente(cliente);
                     cadastroCliente = false;
                     
