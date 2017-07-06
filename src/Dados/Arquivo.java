@@ -24,9 +24,9 @@ import java.util.Scanner;
  */
 public class Arquivo {
     
-    private static final String diretorioClientes = "cadastro_cliente.txt";
-    private static final String diretorioFuncionarios = "cadastro_funcionario.txt";
-    private static final String diretorioArquivos = "cadastro_servico.txt";
+    private static final String diretorioClientes = "src/cadastro_cliente.txt";
+    private static final String diretorioFuncionarios = "src/cadastro_funcionario.txt";
+    private static final String diretorioArquivos = "src/cadastro_servico.txt";
     
     public static int retornarMatricula(int tipo) throws FileNotFoundException
     {
@@ -53,7 +53,7 @@ public class Arquivo {
         
         while(scan.hasNextLine())
         {
-            aux = scan.next();
+            aux = scan.nextLine();
         }
         scan.close();
         tokens = aux.split(";");
