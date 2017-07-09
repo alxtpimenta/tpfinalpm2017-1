@@ -60,6 +60,8 @@ public class TrabalhoFinalPM {
                 listaServicos = Arquivo.carregarCadastroServicos();
                 while(loginFuncionario)
                 {
+                	//MONTA TELA ESPECIFICA
+                	UI.Funcionario FuncionarioWindow = UI.Funcionario.prepararInterface();
                     //LOGAR FUNCIONARIO
                     cpfFuncionarioAtivo = UI.Dialog.intInput("Digite o CPF:");
                     if(Arquivo.verificarExistenciaCliente(cpfFuncionarioAtivo))
@@ -79,6 +81,8 @@ public class TrabalhoFinalPM {
                 
                 while(loginCliente)
                 {
+                	//MONTA TELA ESPECIFICA
+                	UI.Cliente ClientWindow = UI.Cliente.prepararInterface();
                     //LOGAR CLIENTE
                     cpfClienteAtivo = UI.Dialog.intInput("Digite o CPF:");
                     if(Arquivo.verificarExistenciaCliente(cpfClienteAtivo))

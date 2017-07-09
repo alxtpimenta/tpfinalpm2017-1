@@ -1,9 +1,13 @@
 /*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
 package UI;
+
+import java.awt.Container;
+import java.awt.FlowLayout;
 
 import javax.swing.*;
 
@@ -26,18 +30,27 @@ public class Login
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainWindow.setSize(70, 50);
         
-        loginFuncionario = new JButton("Funcion√°rio");
+        // obtem painel de conteudo
+        Container container = mainWindow.getContentPane(); 
+        
+        // define layout
+        container.setLayout( new FlowLayout() );
+        
+        loginFuncionario = new JButton("Funcion·rio");
         loginFuncionario.setBounds(5, 5, 20, 10);
         
-        loginCliente = new JButton("Cliente");
+        loginCliente = new JButton("login Cliente");
         loginCliente.setBounds(25, 15, 20, 10);
         
-        cadastrarCliente = new JButton("Cliente");
+        cadastrarCliente = new JButton("cadastrar Cliente");
         cadastrarCliente.setBounds(45, 35, 20, 10);
         
-        mainWindow.add(loginCliente);
-        mainWindow.add(loginFuncionario);
-        mainWindow.add(cadastrarCliente);
+        container.add(loginCliente);
+        container.add(loginFuncionario);
+        container.add(cadastrarCliente);
+
+
+
         mainWindow.setVisible(true);
     }
     
@@ -50,4 +63,11 @@ public class Login
         }
         return instance;
     }
+
+
+	public static void fecharInterface(JFrame moldura)
+	{
+		moldura.setVisible(false);
+	}
+
 }
