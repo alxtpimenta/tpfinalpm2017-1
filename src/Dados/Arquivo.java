@@ -149,7 +149,7 @@ public class Arquivo {
     public static void cadastrarFuncionario(CadastroFuncionario novo) throws IOException
     {
         String saida = Integer.toString(novo.getMatricula()) + ";" + Integer.toString(novo.getCPF()) + ";" + novo.getNome() + ";" +
-                novo.getEspecialidade() + ";" + novo.getEmail() + ";" + Integer.toString(novo.getTelefone());
+                novo.getEspecialidade() + ";" + novo.getEmail() + ";" + Integer.toString(novo.getTelefone())+"%n";
         File funcionarios = new File(diretorioFuncionarios);
         BufferedWriter output = new BufferedWriter(new FileWriter(funcionarios, true));
         output.write(saida);

@@ -5,6 +5,9 @@
  */
 package UI;
 
+import java.awt.Container;
+import java.awt.FlowLayout;
+
 import javax.swing.*;
 
 /**
@@ -26,18 +29,28 @@ public class Login
         mainWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         mainWindow.setSize(70, 50);
         
+        // obtem painel de conteudo
+        Container container = mainWindow.getContentPane(); 
+        
+        // define layout
+        container.setLayout( new FlowLayout() );
+        
         loginFuncionario = new JButton("Funcionário");
         loginFuncionario.setBounds(5, 5, 20, 10);
         
-        loginCliente = new JButton("Cliente");
+        loginCliente = new JButton("login Cliente");
         loginCliente.setBounds(25, 15, 20, 10);
         
-        cadastrarCliente = new JButton("Cliente");
+        cadastrarCliente = new JButton("cadastrar Cliente");
         cadastrarCliente.setBounds(45, 35, 20, 10);
         
-        //mainWindow.add(loginCliente);
-        //mainWindow.add(loginFuncionario);
-        mainWindow.add(cadastrarCliente);
+        container.add(loginCliente);
+        container.add(loginFuncionario);
+        container.add(cadastrarCliente);
+
+
+
+        mainWindow.setVisible(true);
     }
     
     public static Login prepararInterface()
