@@ -35,10 +35,9 @@ public class Login
         cadastrarCliente = new JButton("Cliente");
         cadastrarCliente.setBounds(45, 35, 20, 10);
         
-        mainWindow.add(loginCliente);
-        mainWindow.add(loginFuncionario);
+        //mainWindow.add(loginCliente);
+        //mainWindow.add(loginFuncionario);
         mainWindow.add(cadastrarCliente);
-        mainWindow.setVisible(true);
     }
     
     public static Login prepararInterface()

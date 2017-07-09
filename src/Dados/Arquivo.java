@@ -31,6 +31,7 @@ public class Arquivo {
     public static int retornarMatricula(int tipo) throws FileNotFoundException
     {
         String diretorio = null;
+        int output = 0;
         
         switch (tipo) {
             case 1:
@@ -47,17 +48,26 @@ public class Arquivo {
         }
         
         File registros = new File(diretorio);
-        Scanner scan = new Scanner(registros);
-        String aux = null;
-        String tokens[];
-        
-        while(scan.hasNextLine())
-        {
-            aux = scan.nextLine();
+        String aux;
+        String[] tokens;
+        try (Scanner scan = new Scanner(registros)) {
+            aux = null;
+            while(scan.hasNextLine())
+            {
+                aux = scan.nextLine();
+            }
         }
-        scan.close();
+        catch(FileNotFoundException e)
+        {
+            return 0;
+        }
+        if(aux != null)
+        {
         tokens = aux.split(";");
-        return Integer.parseInt(tokens[0]);
+        output = Integer.parseInt(tokens[0]);
+        }
+
+        return output;
     }
     
     public static boolean verificarExistenciaCliente(int cpf) throws FileNotFoundException
@@ -110,6 +120,7 @@ public class Arquivo {
         File clientes = new File(diretorioClientes);
         BufferedWriter output = new BufferedWriter(new FileWriter(clientes, true));
         output.write(saida);
+        output.close();
     }
     
     public static List<CadastroFuncionario> carregarCadastroFuncionario() throws FileNotFoundException
