@@ -36,6 +36,7 @@ public class Login
         // define layout
         container.setLayout( new FlowLayout() );
         
+
         loginFuncionario = new JButton("Funcionário");
         loginFuncionario.setBounds(5, 5, 20, 10);
         

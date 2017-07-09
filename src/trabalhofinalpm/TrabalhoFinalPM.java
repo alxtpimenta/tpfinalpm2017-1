@@ -38,10 +38,12 @@ public class TrabalhoFinalPM {
         List<CadastroFuncionario> listaFuncionarios;
         List<CadastroServico> listaServicos;
         UI.Login loginWindow = UI.Login.prepararInterface();
+        UI.Cliente clienteWindow = UI.Cliente.prepararInterface();
         while(mainLoop)
         {
             while(login)
             {
+                loginWindow.mainWindow.setVisible(true);
                 loginWindow.loginFuncionario.addActionListener((ActionEvent e) -> {
                     loginFuncionario = true;
                     //LOGIN DE FUNCIONARIO
@@ -69,6 +71,8 @@ public class TrabalhoFinalPM {
                         //FUNCIONARIO LOGADO
                         loginFuncionario = false;
                         login = false;
+                        loginWindow.mainWindow.setVisible(false);
+                        telaFuncionario = true;
                     }
                     else
                     {
@@ -90,6 +94,9 @@ public class TrabalhoFinalPM {
                         //CLIENTE LOGADO
                         loginCliente = false;
                         login = false;
+                        loginWindow.mainWindow.setVisible(false);
+                        telaCliente = true;
+                        clienteWindow.mainWindow.setVisible(true);
                     }
                     else
                     {

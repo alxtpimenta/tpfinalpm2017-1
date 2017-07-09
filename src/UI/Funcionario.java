@@ -13,6 +13,7 @@ import javax.swing.JFrame;
  * @author alex
  */
 public class Funcionario {
+
     
     public JFrame FuncionarioWindow;
     public JButton abrirOrdemServico;
@@ -25,7 +26,7 @@ public class Funcionario {
     	FuncionarioWindow = new JFrame("Funcionario");
     	FuncionarioWindow.setLocationRelativeTo(null);
     	FuncionarioWindow.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	FuncionarioWindow.setSize(70, 50);
+    	FuncionarioWindow.setSize(500, 400);
         
         // obtem painel de conteudo
         Container container = FuncionarioWindow.getContentPane(); 
@@ -39,12 +40,13 @@ public class Funcionario {
         
         //
        editarOrdemServico = new JButton("editarOrdemServico");
-       editarOrdemServico.setBounds(5, 5, 20, 10); 
+       editarOrdemServico.setBounds(50, 20, 400, 90); 
        container.add(editarOrdemServico);
 
 
 
         FuncionarioWindow.setVisible(true);
+
     }
     
     public static Funcionario prepararInterface()
