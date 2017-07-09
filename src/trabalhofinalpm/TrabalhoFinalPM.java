@@ -23,8 +23,10 @@ public class TrabalhoFinalPM {
     private static boolean loginCliente = false;
     private static boolean loginFuncionario = false;
     private static boolean cadastroCliente = false;
+    private static boolean cadastroFuncionario = false;
     private static boolean telaCliente = false;
     private static boolean telaFuncionario = false;
+    private static boolean registrarChamado = false;
     private static int cpfClienteAtivo;
     private static int cpfFuncionarioAtivo;
     /**
@@ -54,6 +56,10 @@ public class TrabalhoFinalPM {
                 });
                 loginWindow.cadastrarCliente.addActionListener((ActionEvent e) -> {
                     cadastroCliente = true;
+                    //CADASTRO DE CLIENTE
+                });
+                loginWindow.cadastrarFuncionario.addActionListener((ActionEvent e) -> {
+                    cadastroFuncionario = true;
                     //CADASTRO DE CLIENTE
                 });
                 //Atualizar registros na memoria
@@ -96,7 +102,7 @@ public class TrabalhoFinalPM {
                         login = false;
                         loginWindow.mainWindow.setVisible(false);
                         telaCliente = true;
-                        clienteWindow.mainWindow.setVisible(true);
+                        clienteWindow.clientWindow.setVisible(true);
                     }
                     else
                     {
@@ -123,11 +129,45 @@ public class TrabalhoFinalPM {
                     cadastroCliente = false;
                     
                 }
+                while(cadastroFuncionario)
+                {
+                    //CADASTRO DE CLIENTE
+                    String nome, email,especialidade;
+                    int matricula,telefone,cpf;
+                    CadastroFuncionario funcionario;
+                    nome = UI.Dialog.stringInput("Nome:");
+                    cpf = UI.Dialog.intInput("CPF:");
+                    email = UI.Dialog.stringInput("Email:");
+                    telefone = UI.Dialog.intInput("Telefone:");
+                    especialidade = UI.Dialog.stringInput("Especialidade:");
+                    matricula = Arquivo.retornarMatricula(2);
+                    funcionario = new CadastroFuncionario(matricula,cpf,nome,especialidade,email,telefone);
+                    Arquivo.cadastrarFuncionario(funcionario);
+                    cadastroFuncionario = false;
+                    
+                }
                 //FIM DA TELA DE LOGIN
             }
             while(telaCliente)
             {
                 //TELA DO CLIENTE
+                clienteWindow.botao1.addActionListener((ActionEvent e) -> {
+                    registrarChamado = true;
+                });
+                if(registrarChamado)
+                {
+                    CadastroServico novoServico;
+                    int matricula,telefone,cpfCliente,cpfFuncionario;
+                    String descricao;
+                    matricula = Arquivo.retornarMatricula(3);
+                    cpfCliente = UI.Dialog.intInput("Digite o CPF do cliente");
+                    cpfFuncionario = UI.Dialog.intInput("Digite o CPF do funcionario");
+                    descricao = UI.Dialog.stringInput("Digite a descricao do chamado");
+                    novoServico = new CadastroServico(matricula,cpfCliente,cpfFuncionario,descricao,1);
+                    Arquivo.cadastrarServico(novoServico);
+                    registrarChamado = false;
+                    
+                }
             }
             while(telaFuncionario)
             {

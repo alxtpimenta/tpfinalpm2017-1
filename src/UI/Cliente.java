@@ -35,15 +35,12 @@ public class Cliente {
         // define layout
         container.setLayout( new FlowLayout() );
         
-        botao1 = new JButton("botao1");
+        botao1 = new JButton("Novo Chamado");
         botao1.setBounds(5, 5, 20, 10);
-        
-       
+    
         container.add(botao1);
-
-
-
         clientWindow.setVisible(true);
+        clientWindow.pack();
     }
     
     public static Cliente prepararInterface()

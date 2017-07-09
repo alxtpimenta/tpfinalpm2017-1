@@ -77,17 +77,18 @@ public class Arquivo {
         Scanner scan = new Scanner(clientes);
         
         String aux;
-        String tokens[];
-        boolean output = false;
+        String tokens[] = null;
         while(scan.hasNextLine())
         {
             aux = scan.next();
-            tokens = aux.split(";");
-            if(Integer.parseInt(tokens[1]) == cpf)
-                output = true;
+            if(aux != null)
+                tokens = aux.split(";");
+
+            if(Integer.parseInt(tokens[1]) == cpf && tokens != null)
+                return true;
         }
         scan.close();
-        return output;
+        return false;
     }
     
     public static List<CadastroCliente> carregarCadastroClientes() throws FileNotFoundException
@@ -120,6 +121,7 @@ public class Arquivo {
         File clientes = new File(diretorioClientes);
         BufferedWriter output = new BufferedWriter(new FileWriter(clientes, true));
         output.write(saida);
+        output.newLine();
         output.close();
     }
     
@@ -149,10 +151,12 @@ public class Arquivo {
     public static void cadastrarFuncionario(CadastroFuncionario novo) throws IOException
     {
         String saida = Integer.toString(novo.getMatricula()) + ";" + Integer.toString(novo.getCPF()) + ";" + novo.getNome() + ";" +
-                novo.getEspecialidade() + ";" + novo.getEmail() + ";" + Integer.toString(novo.getTelefone())+"%n";
+                novo.getEspecialidade() + ";" + novo.getEmail() + ";" + Integer.toString(novo.getTelefone());
         File funcionarios = new File(diretorioFuncionarios);
         BufferedWriter output = new BufferedWriter(new FileWriter(funcionarios, true));
         output.write(saida);
+        output.newLine();
+        output.close();
     }
     
     public static List<CadastroServico> carregarCadastroServicos() throws FileNotFoundException
@@ -185,6 +189,8 @@ public class Arquivo {
         File servicos = new File(diretorioArquivos);
         BufferedWriter output = new BufferedWriter(new FileWriter(servicos, true));
         output.write(saida);
+        output.newLine();
+        output.close();
     }
     
     public static List<CadastroServico> retornarServicosCPF(List<CadastroServico> cadastros, int cpf)
