@@ -10,6 +10,7 @@ import UI.*;
 import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,6 +28,7 @@ public class TrabalhoFinalPM {
     private static boolean telaCliente = false;
     private static boolean telaFuncionario = false;
     private static boolean registrarChamado = false;
+    private static boolean telaServicos = false;
     private static int cpfClienteAtivo;
     private static int cpfFuncionarioAtivo;
     /**
@@ -39,6 +41,7 @@ public class TrabalhoFinalPM {
         List<CadastroCliente> listaClientes;
         List<CadastroFuncionario> listaFuncionarios;
         List<CadastroServico> listaServicos;
+        List<CadastroServico> listaServicosAtivos;
         UI.Login loginWindow = UI.Login.prepararInterface();
         UI.Cliente clienteWindow = UI.Cliente.prepararInterface();
         while(mainLoop)
@@ -103,6 +106,12 @@ public class TrabalhoFinalPM {
                         loginWindow.mainWindow.setVisible(false);
                         telaCliente = true;
                         clienteWindow.clientWindow.setVisible(true);
+                        listaServicosAtivos = new ArrayList<>();
+                        for(CadastroServico registro : listaServicos)
+                        {
+                            if(registro.getCPF() == cpfClienteAtivo)
+                                listaServicosAtivos.add(registro);
+                        }
                     }
                     else
                     {
@@ -156,7 +165,12 @@ public class TrabalhoFinalPM {
                 });
                 
                 clienteWindow.listarSolicitacoes.addActionListener((ActionEvent e) -> {
-                    registrarChamado = true;
+                    telaServicos = true;
+                    String chamados = null;
+                    for(CadastroServico registro : listaServicosAtivos)
+                    {
+                        chamados.concat(registro.toString());
+                    }
                 });
                 
                 if(registrarChamado)
@@ -169,7 +183,12 @@ public class TrabalhoFinalPM {
                     novoServico = new CadastroServico(matricula,cpfClienteAtivo,descricao,1);
                     Arquivo.cadastrarServico(novoServico);
                     registrarChamado = false;
-                    
+                }
+                if(telaServicos)
+                {
+                    clienteWindow.solicitacoesWindow.setVisible(true);
+                    clienteWindow.conteudo.setText(chamados);
+                    telaServicos = false;
                 }
             }
             while(telaFuncionario)
