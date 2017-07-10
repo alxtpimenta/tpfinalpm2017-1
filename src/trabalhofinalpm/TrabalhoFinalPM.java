@@ -151,9 +151,14 @@ public class TrabalhoFinalPM {
             while(telaCliente)
             {
                 //TELA DO CLIENTE
-                clienteWindow.botao1.addActionListener((ActionEvent e) -> {
+                clienteWindow.adicionarSolicitacao.addActionListener((ActionEvent e) -> {
                     registrarChamado = true;
                 });
+                
+                clienteWindow.listarSolicitacoes.addActionListener((ActionEvent e) -> {
+                    registrarChamado = true;
+                });
+                
                 if(registrarChamado)
                 {
                     CadastroServico novoServico;
@@ -177,3 +182,4 @@ public class TrabalhoFinalPM {
     }
     
 }
+

@@ -18,7 +18,7 @@ import javax.swing.JFrame;
 public class Cliente {
     
     public JFrame clientWindow;
-    public JButton botao1;
+    public JButton adicionarSolicitacao, listarSolicitacoes;
 
     private static Cliente instance;
     
@@ -35,12 +35,23 @@ public class Cliente {
         // define layout
         container.setLayout( new FlowLayout() );
         
-        botao1 = new JButton("Novo Chamado");
-        botao1.setBounds(5, 5, 20, 10);
+        adicionarSolicitacao = new JButton("AdicionarSolicitacao");
+        adicionarSolicitacao.setBounds(5, 5, 20, 10);
     
-        container.add(botao1);
+        container.add(adicionarSolicitacao);
+        
+        listarSolicitacoes = new JButton("ListarSolicitacao");
+        listarSolicitacoes.setBounds(5, 5, 20, 10);
+    
+        container.add(listarSolicitacoes);       
+        
+        
         clientWindow.setVisible(true);
         clientWindow.pack();
+        
+        
+        
+        
     }
     
     public static Cliente prepararInterface()
