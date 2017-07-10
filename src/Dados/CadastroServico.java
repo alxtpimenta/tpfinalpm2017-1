@@ -18,13 +18,14 @@ public class CadastroServico extends Cadastro
     private final int _id;
     public Orcamento _orcamento;
     
-    public CadastroServico(int id,int cpfCliente, String descricao, int status)
+    public CadastroServico(int id,int matricula,int cpfCliente, String descricao, int status)
     {
         this._descricao = descricao;
         this._cpfCliente = cpfCliente;
         this._cpfFuncionario = 0;
         this._status = status;
         this._id = id;
+        this._matricula = matricula;
     }
     
     public int getCpfCliente()

@@ -28,7 +28,6 @@ public class TrabalhoFinalPM {
     private static boolean telaCliente = false;
     private static boolean telaFuncionario = false;
     private static boolean registrarChamado = false;
-    private static boolean telaServicos = false;
     private static int cpfClienteAtivo;
     private static int cpfFuncionarioAtivo;
     /**
@@ -164,14 +163,6 @@ public class TrabalhoFinalPM {
                     registrarChamado = true;
                 });
                 
-                clienteWindow.listarSolicitacoes.addActionListener((ActionEvent e) -> {
-                    telaServicos = true;
-                    String chamados = null;
-                    for(CadastroServico registro : listaServicosAtivos)
-                    {
-                        chamados.concat(registro.toString());
-                    }
-                });
                 
                 if(registrarChamado)
                 {
@@ -180,20 +171,30 @@ public class TrabalhoFinalPM {
                     String descricao;
                     matricula = Arquivo.retornarMatricula(3);
                     descricao = UI.Dialog.stringInput("Digite a descricao do chamado");
-                    novoServico = new CadastroServico(matricula,cpfClienteAtivo,descricao,1);
+                    novoServico = new CadastroServico(0,matricula,cpfClienteAtivo,descricao,1);
                     Arquivo.cadastrarServico(novoServico);
                     registrarChamado = false;
-                }
-                if(telaServicos)
-                {
-                    clienteWindow.solicitacoesWindow.setVisible(true);
-                    clienteWindow.conteudo.setText(chamados);
-                    telaServicos = false;
                 }
             }
             while(telaFuncionario)
             {
-                //TELA DO FUNCIONARIO
+                //TELA DO CLIENTE
+                clienteWindow.adicionarSolicitacao.addActionListener((ActionEvent e) -> {
+                    registrarChamado = true;
+                });
+                
+                
+                if(registrarChamado)
+                {
+                    CadastroServico novoServico;
+                    int matricula,telefone,cpfCliente,cpfFuncionario;
+                    String descricao;
+                    matricula = Arquivo.retornarMatricula(3);
+                    descricao = UI.Dialog.stringInput("Digite a descricao do chamado");
+                    novoServico = new CadastroServico(0,matricula,cpfClienteAtivo,descricao,1);
+                    Arquivo.cadastrarServico(novoServico);
+                    registrarChamado = false;
+                }
             }
         }
     }
