@@ -165,10 +165,8 @@ public class TrabalhoFinalPM {
                     int matricula,telefone,cpfCliente,cpfFuncionario;
                     String descricao;
                     matricula = Arquivo.retornarMatricula(3);
-                    cpfCliente = UI.Dialog.intInput("Digite o CPF do cliente");
-                    cpfFuncionario = UI.Dialog.intInput("Digite o CPF do funcionario");
                     descricao = UI.Dialog.stringInput("Digite a descricao do chamado");
-                    novoServico = new CadastroServico(matricula,cpfCliente,cpfFuncionario,descricao,1);
+                    novoServico = new CadastroServico(matricula,cpfClienteAtivo,descricao,1);
                     Arquivo.cadastrarServico(novoServico);
                     registrarChamado = false;
                     
